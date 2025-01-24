@@ -1,0 +1,15 @@
+name: triggered_workflow
+
+on:
+  repository_dispatch:
+    types: [trigger]
+
+jobs:
+  test_triggered_workflow:
+    runs-on: ubuntu-latest
+    steps:
+      - name: show received payload
+        run: |
+          echo "This workflow was triggered from another repo"
+          echo "Action Triggered by: ${{ github.event.client_payload.triggered_by }}"
+          echo "Message: ${{ github.event.client_payload.message }}"
